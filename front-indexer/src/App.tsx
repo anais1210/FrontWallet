@@ -1,11 +1,17 @@
 import Navbar from "@/scenes/navbar";
 import Home from "@/scenes/home";
-import OurClasses from "@/scenes/ourClasses";
-import Benefits from "@/scenes/benefits";
-import ContactUs from "@/scenes/contactUs";
-import Footer from "@/scenes/footer";
+import SignIn from "@/scenes/signIn";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  BrowserRouter,
+} from "react-router-dom";
+import ReactDOM from "react-dom";
+import Register from "./scenes/register";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -26,17 +32,20 @@ function App() {
   }, []);
 
   return (
-    <div className="app bg-gray-20">
+    <div className="app bg-gray-20" text-blue-600>
       <Navbar
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <Home setSelectedPage={setSelectedPage} />
-      <Benefits setSelectedPage={setSelectedPage} />
-      <OurClasses setSelectedPage={setSelectedPage} />
-      <ContactUs setSelectedPage={setSelectedPage} />
-      <Footer />
+
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home setSelectedPage={setSelectedPage} />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -55,7 +55,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <HText>MORE THAN JUST A GYM.</HText>
+          <HText>MORE THAN JUST AN INDEXER.</HText>
           <p className="my-5 text-sm">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
             perspiciatis voluptatibus eius nulla, saepe nostrum libero ipsum
@@ -107,7 +107,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
                 >
                   <HText>
                     MILLIONS OF HAPPY MEMBERS GETTING {""}
-                    <span className="text-primary-500">FIT</span>
+                    <span className="text-primary-500">RICH</span>
                   </HText>
                 </motion.div>
               </div>

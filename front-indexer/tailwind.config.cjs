@@ -6,11 +6,11 @@ module.exports = {
       colors: {
         "gray-20": "#F8F4EB",
         "gray-50": "#EFE6E6",
-        "gray-100": "#DFCCCC",
-        "gray-500": "#5E0000",
-        "primary-100": "#FFE1E0",
-        "primary-300": "#FFA6A3",
-        "primary-500": "#FF6B66",
+        "gray-100": "#C0DDF3", //BORDER
+        "gray-500": "#004373", // TEXT
+        "primary-100": "#C7DFF0", //navbar and background
+        "primary-300": "#83C3F1", //input
+        "primary-500": "#32A2F3", // hover button
         "secondary-400": "#FFCD5B",
         "secondary-500": "#FFC132",
       },

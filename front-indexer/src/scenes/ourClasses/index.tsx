@@ -66,7 +66,7 @@ const OurClasses = ({ setSelectedPage }: Props) => {
           }}
         >
           <div className="md:w-3/5">
-            <HText>OUR CLASSES</HText>
+            <HText>PRENIUM PLAN</HText>
             <p className="py-5">
               Fringilla a sed at suspendisse ut enim volutpat. Rhoncus vel est
               tellus quam porttitor. Mauris velit euismod elementum arcu neque

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Logo from "@/assets/Logo.png";
-import Link from "./Link";
+import NavLink from "./NavLink";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ActionButton from "@/shared/ActionButton";
+import { Outlet, Link } from "react-router-dom";
+import SignIn from "../signIn";
 // import ActionButton from "@/shared/ActionButton";
 
 type Props = {
@@ -27,35 +29,35 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             {/* LEFT SIDE */}
-            <img alt="logo" src={Logo} />
+            <img alt="logo" src={Logo} className="h-10 w-auto" />
 
             {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
                 <div className={`${flexBetween} gap-8 text-sm`}>
-                  <Link
+                  <NavLink
                     page="Home"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-                  <Link
+                  <NavLink
                     page="Benefits"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-                  <Link
+                  <NavLink
                     page="Our Classes"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-                  <Link
+                  <NavLink
                     page="Contact Us"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
                 </div>
                 <div className={`${flexBetween} gap-8`}>
-                  <p>Sign In</p>
+                  <a href="/signIn">Sign In</a>
                   <ActionButton setSelectedPage={setSelectedPage}>
                     Become a Member
                   </ActionButton>
@@ -84,22 +86,22 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
           </div>
           {/* MENU ITEMS */}
           <div className="ml-[33%] flex flex-col gap-10 text-2xl">
-            <Link
+            <NavLink
               page="Home"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-            <Link
+            <NavLink
               page="Benefits"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-            <Link
+            <NavLink
               page="Our Classes"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-            <Link
+            <NavLink
               page="Contact Us"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
