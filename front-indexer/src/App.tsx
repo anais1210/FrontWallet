@@ -12,6 +12,9 @@ import {
 } from "react-router-dom";
 import ReactDOM from "react-dom";
 import Register from "./scenes/register";
+import Subscription from "./scenes/subscription";
+import ContactUs from "./scenes/contactUs";
+import Benefits from "./scenes/benefits";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -41,7 +44,26 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home setSelectedPage={setSelectedPage} />} />
+          <Route
+            index
+            path="/"
+            element={<Home setSelectedPage={setSelectedPage} />}
+          />
+          <Route
+            index
+            path="/"
+            element={<Benefits setSelectedPage={setSelectedPage} />}
+          />
+          <Route
+            index
+            path="/subscription"
+            element={<Subscription setSelectedPage={setSelectedPage} />}
+          />
+          <Route
+            index
+            path="/contact"
+            element={<ContactUs setSelectedPage={setSelectedPage} />}
+          />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
         </Routes>

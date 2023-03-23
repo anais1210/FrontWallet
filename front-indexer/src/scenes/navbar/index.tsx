@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Logo from "@/assets/Logo.png";
-import NavLink from "./NavLink";
+import { ethers } from "ethers";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import ActionButton from "@/shared/ActionButton";
 import { Outlet, Link } from "react-router-dom";
 import SignIn from "../signIn";
-// import ActionButton from "@/shared/ActionButton";
+import NavLink from "./NavLink";
+declare var window: any;
 
 type Props = {
   isTopOfPage: boolean;
@@ -18,8 +18,29 @@ type Props = {
 const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 850px)");
   const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
+  const [walletAddress, setWalletAddress] = useState("");
+
+  async function requestAccount() {
+    console.log("Requesting account...");
+
+    if (window.ethereum) {
+      console.log("detected");
+
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setWalletAddress(accounts[0]);
+      } catch (error) {
+        console.log("Error connecting...");
+      }
+    } else {
+      alert("Meta Mask not detected");
+    }
+  }
+  // Check if metamask is detected
 
   return (
     <nav>
@@ -29,18 +50,14 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             {/* LEFT SIDE */}
-            <img alt="logo" src={Logo} className="h-10 w-auto" />
+            <a href="/">
+              <img alt="logo" src={Logo} className="h-11 w-auto" />
+            </a>
 
-            {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
-                <div className={`${flexBetween} gap-8 text-sm`}>
-                  <NavLink
-                    page="Home"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <NavLink
+                <div className={`${flexBetween} text-md gap-8`}>
+                  {/* <NavLink
                     page="Benefits"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
@@ -54,13 +71,22 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                     page="Contact Us"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
-                  />
+                  /> */}
                 </div>
+                {/* RIGHT SIDE */}
                 <div className={`${flexBetween} gap-8`}>
-                  <a href="/signIn">Sign In</a>
-                  <ActionButton setSelectedPage={setSelectedPage}>
+                  <a
+                    href="/signIn"
+                    className="transition hover:text-primary-300 "
+                  >
+                    Sign In
+                  </a>
+                  <a
+                    href="/subscription"
+                    className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white"
+                  >
                     Become a Member
-                  </ActionButton>
+                  </a>
                 </div>
               </div>
             ) : (
@@ -85,31 +111,18 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             </button>
           </div>
           {/* MENU ITEMS */}
-          <div className="ml-[33%] flex flex-col gap-10 text-2xl">
-            <NavLink
-              page="Home"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <NavLink
-              page="Benefits"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <NavLink
-              page="Our Classes"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
-            <NavLink
-              page="Contact Us"
-              selectedPage={selectedPage}
-              setSelectedPage={setSelectedPage}
-            />
+          <div className="ml-[25%] flex flex-col gap-10 text-2xl">
+            <a className=" hover:text-white" onClick={requestAccount}>
+              Sign In
+            </a>
+            <a className=" hover:text-white" href="/subscription">
+              Become a Member
+            </a>
           </div>
         </div>
       )}
     </nav>
   );
 };
+
 export default Navbar;

@@ -1,38 +1,38 @@
 import HText from "@/shared/HText";
-import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
-import { ethers } from "ethers";
+// import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
+// import { ethers } from "ethers";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Web3Modal from "web3modal";
+// import Web3Modal from "web3modal";
 
-const providerOptions = {
-  coinbasewallet: {
-    package: CoinbaseWalletSDK,
-    options: {
-      appName: "Web3Modal Deno",
-      infuraId: { 3: "https:ropsten.infura.io/v3/fef" },
-    },
-  },
-};
+// const providerOptions = {
+//   coinbasewallet: {
+//     package: CoinbaseWalletSDK,
+//     options: {
+//       appName: "Web3Modal Deno",
+//       infuraId: { 3: "https:ropsten.infura.io/v3/fef" },
+//     },
+//   },
+// };
 
 const Register = () => {
-  const [web3Provider, setWeb3Provider] = useState(null);
-  async function connectWallet() {
-    try {
-      let web3Modal = new Web3Modal({
-        cacheProvider: false,
-        providerOptions,
-      });
-      const web3ModalInstance = await web3Modal.connect();
-      const web3ModalProvider = new ethers.providers.Web3Provider(
-        web3ModalInstance
-      );
-      console.log(web3ModalProvider);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // const [web3Provider, setWeb3Provider] = useState(null);
+  // async function connectWallet() {
+  //   try {
+  //     let web3Modal = new Web3Modal({
+  //       cacheProvider: false,
+  //       providerOptions,
+  //     });
+  //     const web3ModalInstance = await web3Modal.connect();
+  //     const web3ModalProvider = new ethers.providers.Web3Provider(
+  //       web3ModalInstance
+  //     );
+  //     console.log(web3ModalProvider);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   const inputStyles = `mb-5 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white`;
   const {
     register,
@@ -128,20 +128,21 @@ const Register = () => {
                   {errors.email.type === "pattern" && "Invalid email address."}
                 </p>
               )}
-              {web3Provider === null ? (
+              {/* {web3Provider === null ? (
                 <button
                   type="submit"
                   className="mt-5 justify-center rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white"
-                  onClick={connectWallet}
+                  // onClick={connectWallet}
                 >
                   Connect Your Wallet{" "}
                 </button>
               ) : (
                 <div>
                   <p>Connected! </p>
-                  <p>Address : {web3Provider.provider.selectedAddress}</p>
-                </div>
-              )}
+                  {/* <p>Address : {web3Provider.provider.selectedAddress}</p> */}
+              {/* </div>
+              )} 
+               */}
 
               <hr />
               <button

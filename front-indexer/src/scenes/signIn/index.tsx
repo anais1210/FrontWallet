@@ -135,13 +135,13 @@ const SignIn = () => {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext">
+            {/* <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext">
               <img
                 // src={ContactUsPageGraphic}
                 alt="contact-us-page-graphic"
                 className="w-full"
               />
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </motion.div>

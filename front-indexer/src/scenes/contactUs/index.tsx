@@ -39,13 +39,17 @@ const ContactUs = ({ setSelectedPage }: Props) => {
         >
           <HText>
             {" "}
-            <span className="text-primary-500">JOIN NOW</span> TO GET IN SHAPE
+            <span className="text-primary-500">JOIN NOW</span> FOR MORE
+            INFORMATIONS
           </HText>
           <p className="my-5">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            dolorem amet labore eius eum. Quod fugit, unde aliquam similique nam
-            at iure minus, quia fugiat molestiae, neque numquam quibusdam
-            voluptate.
+            <p className="my-5">
+              {" "}
+              <span className="font-bold">Tel:</span> (+33)6 12-34-56-78 <br />
+              <span className="font-bold">Mailing Address:</span> 1 Rue
+              Saint-Antoine, <br />
+              75012, Paris, <br /> France
+            </p>
           </p>
         </motion.div>
 

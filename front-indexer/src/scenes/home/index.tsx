@@ -8,7 +8,7 @@ import SponsorForbes from "@/assets/SponsorForbes.png";
 import SponsorFortune from "@/assets/SponsorFortune.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { motion } from "framer-motion";
-import OurClasses from "../ourClasses";
+import OurClasses from "../subscription";
 import Benefits from "../benefits";
 import ContactUs from "../contactUs";
 import Footer from "../footer";
@@ -42,7 +42,7 @@ const Home = ({ setSelectedPage }: Props) => {
             }}
           >
             <div className="relative">
-              <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-evolvetext">
+              <div className="md:before:content before:absolute before:-top-20 before:-left-20 before:z-[-1]">
                 <img alt="home-page-text" src={HomePageText} />
               </div>
             </div>
@@ -103,12 +103,10 @@ const Home = ({ setSelectedPage }: Props) => {
       <section>
         <Benefits setSelectedPage={setSelectedPage} />
       </section>
-      <section>
+      {/* <section>
         <OurClasses setSelectedPage={setSelectedPage} />
-      </section>
-      <section>
-        <ContactUs setSelectedPage={setSelectedPage} />
-      </section>
+      </section> */}
+
       <Footer />
     </section>
   );
