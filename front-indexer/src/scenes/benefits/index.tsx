@@ -1,6 +1,6 @@
 import ActionButton from "@/shared/ActionButton";
 import HText from "@/shared/HText";
-import { SelectedPage, BenefitType } from "@/shared/types";
+import { BenefitType } from "@/shared/types";
 import {
   HomeModernIcon,
   UserGroupIcon,
@@ -33,16 +33,11 @@ const container = {
     transition: { staggerChildren: 0.2 },
   },
 };
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
 
-const Benefits = ({ setSelectedPage }: Props) => {
+const Benefits = () => {
   return (
     <section id="benefits" className="mx-auto min-h-full w-5/6 py-20">
-      <motion.div
-        onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}
-      >
+      <motion.div>
         {/* HEADER */}
         <motion.div
           className="md:my-5 md:w-3/5"
@@ -78,7 +73,6 @@ const Benefits = ({ setSelectedPage }: Props) => {
               icon={benefit.icon}
               title={benefit.title}
               description={benefit.description}
-              setSelectedPage={setSelectedPage}
             />
           ))}
         </motion.div>
@@ -140,9 +134,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
             {/* BUTTON */}
             <div className="relative mt-16">
               <div className="before:absolute before:-bottom-20 before:right-40 before:z-[-1] before:content-sparkles">
-                <ActionButton setSelectedPage={setSelectedPage}>
-                  Join Now
-                </ActionButton>
+                <ActionButton>Join Now</ActionButton>
               </div>
             </div>
           </div>

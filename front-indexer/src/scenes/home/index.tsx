@@ -1,5 +1,4 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { SelectedPage } from "@/shared/types";
 import ActionButton from "@/shared/ActionButton";
 import HomePageText from "@/assets/HomePageText.png";
 import HomePageGraphic from "@/assets/HomePageGraphic.png";
@@ -8,16 +7,10 @@ import SponsorForbes from "@/assets/SponsorForbes.png";
 import SponsorFortune from "@/assets/SponsorFortune.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { motion } from "framer-motion";
-import OurClasses from "../subscription";
 import Benefits from "../benefits";
-import ContactUs from "../contactUs";
 import Footer from "../footer";
 
-type Props = {
-  setSelectedPage: (value: SelectedPage) => void;
-};
-
-const Home = ({ setSelectedPage }: Props) => {
+const Home = () => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
 
   return (
@@ -25,7 +18,7 @@ const Home = ({ setSelectedPage }: Props) => {
       {/* IMAGE AND MAIN HEADER */}
       <motion.div
         className="mx-auto w-5/6 items-center justify-center md:flex md:h-5/6"
-        onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
+        // onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
       >
         {/* MAIN HEADER */}
         <div className="z-10 mt-32 md:basis-3/5">
@@ -66,13 +59,10 @@ const Home = ({ setSelectedPage }: Props) => {
               visible: { opacity: 1, x: 0 },
             }}
           >
-            <ActionButton setSelectedPage={setSelectedPage}>
-              Join Now
-            </ActionButton>
+            <ActionButton>Join Now</ActionButton>
             <AnchorLink
               className="text-sm font-bold text-primary-500 underline hover:text-secondary-500"
-              onClick={() => setSelectedPage(SelectedPage.ContactUs)}
-              href={`#${SelectedPage.ContactUs}`}
+              // onClick={() => setSelectedPage(SelectedPage.ContactUs)}
             >
               <p>Learn More</p>
             </AnchorLink>
@@ -101,12 +91,8 @@ const Home = ({ setSelectedPage }: Props) => {
         </div>
       )}
       <section>
-        <Benefits setSelectedPage={setSelectedPage} />
+        <Benefits />
       </section>
-      {/* <section>
-        <OurClasses setSelectedPage={setSelectedPage} />
-      </section> */}
-
       <Footer />
     </section>
   );

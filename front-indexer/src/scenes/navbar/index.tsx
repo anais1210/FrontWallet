@@ -2,20 +2,14 @@ import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Logo from "@/assets/Logo.png";
 import { ethers } from "ethers";
-import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { Outlet, Link } from "react-router-dom";
-import SignIn from "../signIn";
-import NavLink from "./NavLink";
 declare var window: any;
 
 type Props = {
   isTopOfPage: boolean;
-  selectedPage: SelectedPage;
-  setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
+const Navbar = ({ isTopOfPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width: 850px)");
@@ -56,23 +50,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
-                <div className={`${flexBetween} text-md gap-8`}>
-                  {/* <NavLink
-                    page="Benefits"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <NavLink
-                    page="Our Classes"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <NavLink
-                    page="Contact Us"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  /> */}
-                </div>
+                <div className={`${flexBetween} text-md gap-8`}></div>
                 {/* RIGHT SIDE */}
                 <div className={`${flexBetween} gap-8`}>
                   <a
