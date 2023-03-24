@@ -42,47 +42,43 @@ const Navbar = ({ isTopOfPage }: Props) => {
     }
   }
   const refreshState = () => {
-    setAccount(account);
-    setChainId(chainId);
-    // setNetwork("");
-    // setMessage("");
-    // setSignature("");
-    // setVerified(undefined);
+    setAccount("");
+    setChainId(0);
   };
 
   const disconnect = async () => {
     await web3Modal.clearCachedProvider();
     refreshState();
   };
-  useEffect(() => {
-    if (provider?.on) {
-      const handleAccountsChanged = (accounts: string) => {
-        console.log("accountsChanged", accounts);
-        if (accounts) setAccount(accounts[0]);
-      };
+  // useEffect(() => {
+  //   if (provider?.on) {
+  //     const handleAccountsChanged = (accounts: string) => {
+  //       console.log("accountsChanged", accounts);
+  //       if (accounts) setAccount(accounts[0]);
+  //     };
 
-      const handleChainChanged = (_hexChainId: Number) => {
-        setChainId(_hexChainId);
-      };
+  //     const handleChainChanged = (_hexChainId: Number) => {
+  //       setChainId(_hexChainId);
+  //     };
 
-      const handleDisconnect = () => {
-        console.log("disconnect");
-        disconnect();
-      };
+  const handleDisconnect = () => {
+    console.log("disconnect");
+    disconnect();
+  };
 
-      provider.on("accountsChanged", handleAccountsChanged);
-      provider.on("chainChanged", handleChainChanged);
-      provider.on("disconnect", handleDisconnect);
+  //     provider.on("accountsChanged", handleAccountsChanged);
+  //     provider.on("chainChanged", handleChainChanged);
+  //     provider.on("disconnect", handleDisconnect);
 
-      return () => {
-        if (provider.removeListener) {
-          provider.removeListener("accountsChanged", handleAccountsChanged);
-          provider.removeListener("chainChanged", handleChainChanged);
-          provider.removeListener("disconnect", handleDisconnect);
-        }
-      };
-    }
-  }, [provider]);
+  //     return () => {
+  //       if (provider.removeListener) {
+  //         provider.removeListener("accountsChanged", handleAccountsChanged);
+  //         provider.removeListener("chainChanged", handleChainChanged);
+  //         provider.removeListener("disconnect", handleDisconnect);
+  //       }
+  //     };
+  //   }
+  // }, [provider]);
   return (
     <nav>
       <div
@@ -105,9 +101,9 @@ const Navbar = ({ isTopOfPage }: Props) => {
                       <Button onClick={connectWallet}>Connect Wallet</Button>
                     ) : (
                       <div>
-                        <Tooltip label={account} placement="right">
+                        {/* <Tooltip label={account} placement="right">
                           <Text>{`Account: ${truncateAddress(account)}`}</Text>
-                        </Tooltip>
+                        </Tooltip> */}
                         <Button onClick={disconnect}>Disconnect</Button>
                       </div>
                     )}
