@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Logo from "@/assets/Logo.png";
 import { ethers } from "ethers";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Web3Modal from "web3modal";
 import { providerOptions } from "@/shared/ProviderOptions";
+import { Tooltip, Text, HStack, Button } from "@chakra-ui/react";
+import { truncateAddress } from "@/shared/utils";
 
 type Props = {
   isTopOfPage: boolean;
@@ -19,7 +21,7 @@ const Navbar = ({ isTopOfPage }: Props) => {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width: 850px)");
   const navbarBackground = isTopOfPage ? "" : "bg-primary-100 drop-shadow";
-  const [provider, setProvider] = useState("");
+  const [provider, setProvider] = useState<any>();
   const [library, setLibrary] = useState<any>();
   const [account, setAccount] = useState<string>();
   const [chainId, setChainId] = useState<Number>();
@@ -40,8 +42,8 @@ const Navbar = ({ isTopOfPage }: Props) => {
     }
   }
   const refreshState = () => {
-    setAccount("");
-    setChainId(0);
+    setAccount(account);
+    setChainId(chainId);
     // setNetwork("");
     // setMessage("");
     // setSignature("");
@@ -52,11 +54,35 @@ const Navbar = ({ isTopOfPage }: Props) => {
     await web3Modal.clearCachedProvider();
     refreshState();
   };
-  const handleDisconnect = () => {
-    console.log("disconnect");
-    disconnect();
-  };
+  useEffect(() => {
+    if (provider?.on) {
+      const handleAccountsChanged = (accounts: string) => {
+        console.log("accountsChanged", accounts);
+        if (accounts) setAccount(accounts[0]);
+      };
 
+      const handleChainChanged = (_hexChainId: Number) => {
+        setChainId(_hexChainId);
+      };
+
+      const handleDisconnect = () => {
+        console.log("disconnect");
+        disconnect();
+      };
+
+      provider.on("accountsChanged", handleAccountsChanged);
+      provider.on("chainChanged", handleChainChanged);
+      provider.on("disconnect", handleDisconnect);
+
+      return () => {
+        if (provider.removeListener) {
+          provider.removeListener("accountsChanged", handleAccountsChanged);
+          provider.removeListener("chainChanged", handleChainChanged);
+          provider.removeListener("disconnect", handleDisconnect);
+        }
+      };
+    }
+  }, [provider]);
   return (
     <nav>
       <div
@@ -74,13 +100,18 @@ const Navbar = ({ isTopOfPage }: Props) => {
                 <div className={`${flexBetween} text-md gap-8`}></div>
                 {/* RIGHT SIDE */}
                 <div className={`${flexBetween} gap-8`}>
-                  <div>
+                  <HStack>
                     {!account ? (
-                      <button onClick={connectWallet}>Connect Wallet</button>
+                      <Button onClick={connectWallet}>Connect Wallet</Button>
                     ) : (
-                      <button onClick={disconnect}>Disconnect</button>
+                      <div>
+                        <Tooltip label={account} placement="right">
+                          <Text>{`Account: ${truncateAddress(account)}`}</Text>
+                        </Tooltip>
+                        <Button onClick={disconnect}>Disconnect</Button>
+                      </div>
                     )}
-                  </div>
+                  </HStack>
                   <a
                     href="/subscription"
                     className="rounded-md bg-secondary-500 px-10 py-2 hover:bg-primary-500 hover:text-white"
