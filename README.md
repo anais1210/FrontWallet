@@ -1,4 +1,5 @@
 # OpenSea-Indexer
+<<<<<<< HEAD
 Open Sea Indexer For Annual Project 4th years 2023
 
 
@@ -10,3 +11,6 @@ This is a dApp indexing NFT's data from Open Sea, it include graph with:
 - top users with high asset
 - top NFTs by their categories (art, gaming, photography...)
 - top NFTs and users by blockchain
+=======
+Open Sea Indexer For Annual Project 4th years
+>>>>>>> dev
