@@ -9,8 +9,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
 
 # FROM node:16.17.1-alpine AS prod
 
