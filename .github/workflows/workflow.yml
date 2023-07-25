@@ -3,7 +3,7 @@ name: Docker Hub
 run-name: push app to docker hub
 on:
   push:
-    branches: dev
+    branches: main
 jobs:
   build:
     runs-on: ubuntu-latest
