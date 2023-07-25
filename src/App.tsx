@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="app bg-gray-20 bg-gray-50">
       <Navbar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-      <h1>CECI EST UNE MODIF INUTILE #CI/CD</h1>
     </div>
   );
 }
